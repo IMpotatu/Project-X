@@ -1,0 +1,26 @@
+├── lib │   ├── main.dart │   ├── screens │   │   ├── home_screen.dart │   │   ├── breathing_screen.dart │   │   └── timer_screen.dart │   └── widgets │       ├── toggle_buttons.dart │       └── breathing_animation.dart ├── pubspec.yaml
+
+// main.dart import 'package:flutter/material.dart'; import 'screens/home_screen.dart';
+
+void main() => runApp(const RoutineApp());
+
+class RoutineApp extends StatelessWidget { const RoutineApp({super.key});
+
+@override Widget build(BuildContext context) { return MaterialApp( title: 'Routine', theme: ThemeData( useMaterial3: true, colorSchemeSeed: Colors.deepPurple, brightness: Brightness.light, ), home: const HomeScreen(), ); } }
+
+// home_screen.dart import 'package:flutter/material.dart'; import 'breathing_screen.dart'; import 'timer_screen.dart'; import '../widgets/toggle_buttons.dart';
+
+class HomeScreen extends StatelessWidget { const HomeScreen({super.key});
+
+@override Widget build(BuildContext context) { return Scaffold( appBar: AppBar(title: const Text('Routine')), body: Center( child: Column( mainAxisAlignment: MainAxisAlignment.center, children: [ const ToggleButtonGroup(), const SizedBox(height: 20), ElevatedButton( onPressed: () => Navigator.push( context, MaterialPageRoute(builder: (context) => const TimerScreen()), ), child: const Text('Timer'), ), ElevatedButton( onPressed: () => Navigator.push( context, MaterialPageRoute(builder: (context) => const BreathingScreen()), ), child: const Text('Breathing'), ) ], ), ), ); } }
+
+// timer_screen.dart import 'package:flutter/material.dart';
+
+class TimerScreen extends StatelessWidget { const TimerScreen({super.key});
+
+@override Widget build(BuildContext context) { return Scaffold( appBar: AppBar(title: const Text('Plank Timer')), body: Center( child: Column( mainAxisAlignment: MainAxisAlignment.center, children: [ const Text('00 : 00 : 09', style: TextStyle(fontSize: 40)), const SizedBox(height: 20), ElevatedButton( onPressed: () {}, child: const Text('Pause'), ) ], ), ), ); } }
+
+// breathing_screen.dart import 'package:flutter/material.dart'; import '../widgets/breathing_animation.dart';
+
+class BreathingScreen extends StatelessWidget { const BreathingScreen({super.key});
+
